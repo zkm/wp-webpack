@@ -21,6 +21,15 @@ wp-content/plugins/hello.php
 # ignore node dependency directories
 node_modules/
 
+# Yarn (Berry/v2+)
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
 # ignore log files and databases
 *.log
 *.sql
