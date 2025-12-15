@@ -1,0 +1,77 @@
+name: Build WordPress Theme
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: wp-content/themes/twentytwentyone-child/package-lock.json
+    
+    - name: Install dependencies
+      working-directory: ./wp-content/themes/twentytwentyone-child
+      run: npm ci
+    
+    - name: Build production assets
+      working-directory: ./wp-content/themes/twentytwentyone-child
+      run: npm run prod
+    
+    - name: Check for build artifacts
+      working-directory: ./wp-content/themes/twentytwentyone-child
+      run: |
+        if [ ! -d "dist" ]; then
+          echo "Error: dist directory not created"
+          exit 1
+        fi
+        echo "Build artifacts created successfully"
+        ls -la dist/
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: theme-build-node-${{ matrix.node-version }}
+        path: wp-content/themes/twentytwentyone-child/dist/
+        retention-days: 7
+  
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+        cache-dependency-path: wp-content/themes/twentytwentyone-child/package-lock.json
+    
+    - name: Install dependencies
+      working-directory: ./wp-content/themes/twentytwentyone-child
+      run: npm ci
+    
+    - name: Check for JavaScript syntax errors
+      working-directory: ./wp-content/themes/twentytwentyone-child
+      run: |
+        echo "Checking JavaScript files for syntax errors..."
+        find . -name "*.js" -not -path "./node_modules/*" -not -path "./dist/*" -exec node -c {} \;
+        echo "JavaScript syntax check completed"
