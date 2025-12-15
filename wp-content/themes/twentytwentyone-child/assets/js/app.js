@@ -1,3 +1,3 @@
-import '../css/style.sass';
+import '../css/style.scss';
 
-import datepicker from './js-datepicker.js.js.js';
+import datepicker from './js-datepcker.js';
