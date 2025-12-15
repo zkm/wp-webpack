@@ -26,11 +26,11 @@ jobs:
     
     - name: Install dependencies
       working-directory: ./wp-content/themes/twentytwentyone-child
-      run: npm ci
+      run: yarn install --frozen-lockfile
     
     - name: Build production assets
       working-directory: ./wp-content/themes/twentytwentyone-child
-      run: npm run prod
+      run: yarn prod
     
     - name: Check for build artifacts
       working-directory: ./wp-content/themes/twentytwentyone-child
@@ -63,7 +63,7 @@ jobs:
     
     - name: Install dependencies
       working-directory: ./wp-content/themes/twentytwentyone-child
-      run: npm ci
+      run: yarn install --frozen-lockfile
     
     - name: Check for JavaScript syntax errors
       working-directory: ./wp-content/themes/twentytwentyone-child
