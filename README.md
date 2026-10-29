@@ -40,7 +40,7 @@ wp-content/
 
 ## Prerequisites
 
-- Node.js (v12 or higher)
+- Node.js (v20.19 or higher; Sass needs it)
 - npm or yarn
 - WordPress installation
 - PHP 7.4 or higher
