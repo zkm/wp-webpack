@@ -1,5 +1,14 @@
 # WordPress with Webpack
 
+[![Build WordPress Theme](https://github.com/zkm/wp-webpack/actions/workflows/build.yml/badge.svg)](https://github.com/zkm/wp-webpack/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
+![WordPress child theme](https://img.shields.io/badge/WordPress-child%20theme-21759B?logo=wordpress&logoColor=white)
+![webpack](https://img.shields.io/badge/webpack-8DD6F9?logo=webpack&logoColor=black)
+![Babel](https://img.shields.io/badge/Babel-F9DC3E?logo=babel&logoColor=black)
+![Sass](https://img.shields.io/badge/Sass-CC6699?logo=sass&logoColor=white)
+![PostCSS](https://img.shields.io/badge/PostCSS-DD3A0A?logo=postcss&logoColor=white)
+
 A WordPress development setup featuring the Twenty Twenty-One child theme with modern build tools using Webpack, Babel, and Sass.
 
 ## Overview
